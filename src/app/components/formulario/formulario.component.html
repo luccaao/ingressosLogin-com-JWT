@@ -1,0 +1,6 @@
+<form [formGroup]="formUser">
+    <input formControlName="username" type="text" placeholder="usuario">
+    <input formControlName="email" type="email" placeholder="email">
+    <input formControlName="password" type="password" placeholder="senha">
+    <button  (click)="enviarDadosRegistro()" type="submit">CADASTRO</button>
+</form>

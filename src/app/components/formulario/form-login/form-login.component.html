@@ -1,0 +1,6 @@
+<p>form-login works!</p>
+<form [formGroup]="formUser">
+    <input formControlName="identifier" type="email" placeholder="email">
+    <input formControlName="password" type="password" placeholder="senha">
+    <button  (click)="enviarDadosLogin()" type="submit">LOGIN</button>
+</form>
