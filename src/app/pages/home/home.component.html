@@ -1,2 +1,30 @@
-<p>home works!</p>
-<p> {{user$.username}} </p>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <div class="nav">
+      <span>Ingressos.com</span>
+
+      <div class="logout">
+        <span>{{ user$.email }}</span>
+        <button mat-raised-button color="accent" (click)="logout()">
+          LOGOUT
+        </button>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+@for ( ingresso of ingressos; track ingresso ) {
+
+
+<div class="card">
+    <p>
+      <span>{{ ingresso.attributes.nome }} </span>
+      <strong>{{ ingresso.attributes.data }}</strong>
+
+       <span class="local">{{ ingresso.attributes.local }} </span>
+       <span> R$ {{ ingresso.attributes.preco }}</span>
+       <button mat-raised-button>RESERVAR</button>
+    
+    </p>
+</div>
+}
