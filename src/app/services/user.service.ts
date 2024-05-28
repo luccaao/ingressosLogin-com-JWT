@@ -24,7 +24,7 @@ export class UserService {
   }
 
   retornarUsuario() {
-    return this.userSubject.asObservable();
+    return this.userSubject.value;
   }
 
   salvaToken(token: string) {
@@ -36,4 +36,6 @@ export class UserService {
     this.tokenService.removeToken();
     this.userSubject.next(null);
   }
+
+  
 }
