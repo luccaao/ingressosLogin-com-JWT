@@ -3,23 +3,35 @@
 
 
 
-<div *ngIf="ingressos.length > 0; else semIngressos">
-    <h1>Meus ingressos</h1>
-  <div *ngFor="let ingresso of ingressos">
-    <div class="card">
-      <p>
-        <span>{{ ingresso.nome}} </span>
+<div  class="teste">
 
-        <strong>{{ ingresso.data }}</strong>
+    <div *ngIf="ingressos.length > 0; else semIngressos" >
+        <h1>Meus ingressos</h1>
 
-        <span class="local">{{ ingresso.local }} </span>
-        <span> R$ {{ ingresso.preco }}</span>
+      <div class="container">
+          <div *ngFor="let ingresso of ingressos">
+            <div class="card">
+                <p>
+                  <span class="banda">{{ ingresso.nome }} </span>
+                  <strong>{{ ingresso.data }}</strong>
+          
+                   <span class="local">{{ ingresso.local }} </span>
+                   <strong> R$ {{ ingresso.preco }}</strong>
+                   <button mat-raised-button (click)="removerIngresso(ingresso.id)">EXCLUIR INGRESSO</button>
+          
+                </p>
+            </div>
+          </div>
+      </div>
 
-        <button mat-raised-button (click)="removerIngresso(ingresso.id)" >EXCLUIR INGRESSO</button>
-      </p>
+
     </div>
-  </div>
+
+
 </div>
+
+
+
 
 <ng-template #semIngressos>
 

@@ -1,16 +1,17 @@
 
 
 .card {
-    width: 20%;
-    max-width: 500px;
+    width: 300PX;
+    max-width: 300px;
     display: flex;
     justify-content: start;
-    align-items: center;
+    align-items: start;
     gap: 30px;
     margin-top: 30px;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
 
 }
 
@@ -53,8 +54,8 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    width: 100%;
+    flex-wrap: wrap;
+    width: 90%;
 }
 
 button {

@@ -1,15 +1,16 @@
 
 
 .card {
-    width: 15%;
+    max-width: 300px;
+    width: 300px;
     display: flex;
     justify-content: start;
     align-items: center;
-    gap: 30px;
     margin-top: 30px;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
 
 }
 
@@ -18,8 +19,10 @@
     flex-direction: column;
 }
 
-.card local {
-    font-size: 10px
+.card .local {
+    font-size: 15px;
+    margin-top: 10px;
+    
 }
 
 .empty{
@@ -40,4 +43,47 @@
 .empty a:hover {
     color: #067bf0;
     text-decoration: underline;
+}
+
+
+
+
+
+.container {
+    display: flex;
+    width: 90%; 
+    gap: 50px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.conteudo {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    
+    
+}
+
+.banda {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+strong {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+button {
+    max-width: 200px;
+    margin-top: 10px;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
 }
