@@ -1,0 +1,43 @@
+
+
+.card {
+    width: 15%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.card p {
+    display: flex;
+    flex-direction: column;
+}
+
+.card local {
+    font-size: 10px
+}
+
+.empty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 100%;
+    font-size: 20px;
+}
+
+.empty a {
+    color: #067bf0;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.empty a:hover {
+    color: #067bf0;
+    text-decoration: underline;
+}

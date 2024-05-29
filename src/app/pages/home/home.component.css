@@ -1,19 +1,8 @@
-.nav {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-}
 
-.logout {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-}
 
 .card {
-    width: 15%;
+    width: 20%;
+    max-width: 500px;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -25,11 +14,50 @@
 
 }
 
-.card p {
+.card p  {
     display: flex;
+    font-size: 18px;
+    gap: 10px;
     flex-direction: column;
 }
 
-.card local {
-    font-size: 10px
+.card p .banda {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.card .local {
+    font-size: 15px
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    
+    
+}
+
+strong {
+    font-size: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.container {
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+}
+
+button {
+    max-width: 200px;
+    width: 300px;
 }

@@ -5,6 +5,7 @@ import { UsuarioRegistro } from '../../usuarioRegistro.model';
 import { Usuario } from '../../usuario.model';
 import { FormLoginComponent } from '../../components/formulario/form-login/form-login.component';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private userService: UserService ) { }
+
 
  
 
@@ -23,7 +25,7 @@ export class LoginComponent {
      this.authService.autenticar(event).subscribe({
       next: (res) => {
         console.log("logado com sucesso", res);
-        this.router.navigate(['/home']);
+        this.userService.estaLogado();
       } 
     
       ,

@@ -1,6 +1,36 @@
-<p>form-login works!</p>
-<form [formGroup]="formUser">
-    <input formControlName="identifier" type="email" placeholder="email">
-    <input formControlName="password" type="password" placeholder="senha">
-    <button  (click)="enviarDadosLogin()" type="submit">LOGIN</button>
-</form>
+<div class="container">
+    <mat-card>
+        <h1>AREA DE LOGIN</h1>
+      <mat-card-content>
+        <form [formGroup]="formUser">
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              formControlName="identifier"
+              type="email"
+    
+            />
+          </mat-form-field>
+    
+          <mat-form-field>
+            <mat-label>Senha</mat-label>
+            <input
+              matInput
+              formControlName="password"
+              type="password"
+    
+            />
+          </mat-form-field>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="enviarDadosLogin()"
+            type="submit"
+          >
+            LOGIN
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+</div>

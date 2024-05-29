@@ -8,9 +8,10 @@ import { MatCardModule } from '@angular/material/card';
 import { IngressosService } from '../../services/ingressos.service';
 
 import { CommonModule } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-header',
   standalone: true,
   imports: [
     MatToolbarModule,
@@ -18,68 +19,41 @@ import { CommonModule } from '@angular/common';
     MatIconModule,
     CommonModule,
     MatCardModule,
+    RouterLink
   ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.css',
 })
-export class HomeComponent {
-  user$!: any;
+export class HeaderComponent {
 
-  ingressos!: [
-    {
-      id?: number;
-      attributes: {
-        nome: string;
-        preco: number;
-        data: string;
-        local: string;
-      };
-    }
-  ];
-
-  count = 0;
+  user$!: any
+  autenticado$!: boolean;
 
   constructor(
     private userService: UserService,
     private authService: AuthService,
-    private ingressoService: IngressosService
+    public router: Router
   ) {}
 
   ngOnInit() {
-   if(this.userService.estaLogado() == false){
-      window.location.href = '/login';
-   }
 
-    this.userService.estaLogado();
-    this.ingressoService.getIngressos().subscribe({
-      next: (res) => {
-        this.ingressos = res.data;
-        console.log(this.ingressos);
-      },
-    });
-
+    console.log(this.autenticado$ = this.userService.estaLogado());
+     
+    
     this.user$ = this.userService.retornarUsuario();
 
-    this.authService.getUsuario(this.user$.id).subscribe({
+    this.authService.getUsuario(this.user$?.id).subscribe({
       next: (res) => {
         this.user$ = res;
+        console.log(this.user$);
       },
     });
+    
   }
 
   logout() {
     this.userService.logout();
-  }
-
-  reservarIngresso(id: any) {
-    const connect_body = {
-      data: {
-        users: {
-          connect: [this.user$.id],
-        },
-      },
-    };
-
-    this.authService.reservarIngresso(id, connect_body);
+    this.autenticado$ = this.userService.estaLogado();
+  
   }
 }

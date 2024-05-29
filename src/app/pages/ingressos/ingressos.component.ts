@@ -8,9 +8,9 @@ import { MatCardModule } from '@angular/material/card';
 import { IngressosService } from '../../services/ingressos.service';
 
 import { CommonModule } from '@angular/common';
-
+import { RouterLink } from '@angular/router';
 @Component({
-  selector: 'app-home',
+  selector: 'app-ingressos',
   standalone: true,
   imports: [
     MatToolbarModule,
@@ -18,68 +18,60 @@ import { CommonModule } from '@angular/common';
     MatIconModule,
     CommonModule,
     MatCardModule,
+    RouterLink
+    
   ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  templateUrl: './ingressos.component.html',
+  styleUrl: './ingressos.component.css',
 })
-export class HomeComponent {
+export class IngressosComponent {
   user$!: any;
 
   ingressos!: [
     {
       id?: number;
-      attributes: {
-        nome: string;
-        preco: number;
-        data: string;
-        local: string;
-      };
+
+      nome: string;
+      preco: number;
+      data: string;
+      local: string;
     }
   ];
-
-  count = 0;
-
   constructor(
-    private userService: UserService,
+    private ingressosService: IngressosService,
     private authService: AuthService,
-    private ingressoService: IngressosService
+    private userService: UserService
   ) {}
 
   ngOnInit() {
-   if(this.userService.estaLogado() == false){
+    if(this.userService.estaLogado() == false){
       window.location.href = '/login';
-   }
+    }
 
-    this.userService.estaLogado();
-    this.ingressoService.getIngressos().subscribe({
-      next: (res) => {
-        this.ingressos = res.data;
-        console.log(this.ingressos);
-      },
-    });
 
     this.user$ = this.userService.retornarUsuario();
-
-    this.authService.getUsuario(this.user$.id).subscribe({
+    this.authService.getRelacao(this.user$.id).subscribe({
       next: (res) => {
-        this.user$ = res;
+        console.log(res.ingressos);
+
+        this.ingressos = res.ingressos;
+        console.log('teste' + this.ingressos);
       },
     });
   }
 
-  logout() {
-    this.userService.logout();
-  }
+  
 
-  reservarIngresso(id: any) {
-    const connect_body = {
+  removerIngresso(id: any) {
+    
+    const disconnect_body = {
       data: {
         users: {
-          connect: [this.user$.id],
+          disconnect: [this.user$.id]
         },
       },
     };
-
-    this.authService.reservarIngresso(id, connect_body);
+    
+    this.authService.removarRelacao(id, disconnect_body);
   }
 }

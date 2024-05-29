@@ -3,11 +3,14 @@ import { FormControl, FormGroup, NgModel, ReactiveFormsModule } from '@angular/f
 import { FormsModule } from '@angular/forms';
 import { Usuario } from '../../usuario.model';
 import { UsuarioRegistro } from '../../usuarioRegistro.model';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+
 
 @Component({
   selector: 'app-formulario',
   standalone: true,
-  imports: [ReactiveFormsModule,FormsModule],
+  imports: [ReactiveFormsModule,FormsModule, MatButtonModule, MatInputModule ],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css'
 })

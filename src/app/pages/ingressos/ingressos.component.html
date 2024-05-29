@@ -1,0 +1,27 @@
+
+
+
+
+
+<div *ngIf="ingressos.length > 0; else semIngressos">
+    <h1>Meus ingressos</h1>
+  <div *ngFor="let ingresso of ingressos">
+    <div class="card">
+      <p>
+        <span>{{ ingresso.nome}} </span>
+
+        <strong>{{ ingresso.data }}</strong>
+
+        <span class="local">{{ ingresso.local }} </span>
+        <span> R$ {{ ingresso.preco }}</span>
+
+        <button mat-raised-button (click)="removerIngresso(ingresso.id)" >EXCLUIR INGRESSO</button>
+      </p>
+    </div>
+  </div>
+</div>
+
+<ng-template #semIngressos>
+
+    <p class="empty">Nenhum ingresso reservado, reserve um clicando <a routerLink="/home">aqui.</a></p>
+</ng-template>

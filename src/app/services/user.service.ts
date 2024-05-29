@@ -16,6 +16,8 @@ export class UserService {
     if(this.tokenService.hasToken()) {
       this.decodificaJWT();
     }
+      
+  
   }
 
   private decodificaJWT() {
@@ -40,8 +42,11 @@ export class UserService {
   }
 
   estaLogado() {
-    return this.tokenService.hasToken();
+    if(this.tokenService.hasToken()) {
+      return true;
   }
+  return false;
+}
 
   
 }

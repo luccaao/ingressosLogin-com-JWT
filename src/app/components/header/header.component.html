@@ -1,0 +1,19 @@
+
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <div class="nav">
+        <span class="home" routerLink="/home">Ingressos.com</span>
+        
+  
+        <div class="logout" *ngIf="autenticado$">
+            <button mat-raised-button *ngIf="router.url !== '/ingressos'"  routerLink="/ingressos">Meus ingressos</button>
+          <span>{{ user$.email }}</span>
+          <button mat-raised-button color="accent" (click)="logout()">
+            LOGOUT
+          </button>
+        </div>
+
+
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
