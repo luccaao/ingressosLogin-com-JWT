@@ -2,12 +2,12 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Usuario } from '../usuario.model';
 import { TokenService } from './token.service';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { UserService } from './user.service';
 import { UsuarioRegistro } from '../usuarioRegistro.model';
 import { Router } from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface AuthResponse {
   jwt: string;
@@ -22,8 +22,7 @@ export class AuthService {
   private APIget = 'http://localhost:1337/api/users/';
   private APIingressos = 'http://localhost:1337/api/ingressos';
 
-
-    matSnackBar = inject(MatSnackBar);
+  matSnackBar = inject(MatSnackBar);
 
   constructor(
     private httpClient: HttpClient,
@@ -46,10 +45,16 @@ export class AuthService {
           this.router.navigate(['/home']);
           window.location.reload();
           window.location.href = 'http://localhost:4200/home';
+        }),
+        catchError((error) => {
+          this.matSnackBar.open('Usuário ou senha inválidos', 'Fechar', {
+            duration: 2000,
+            verticalPosition: 'top',
+          });
+          return throwError(error)
         })
       );
   }
-
   simulateLoading(time: number) {
     return new Promise((resolve) => {
       setTimeout(resolve, time);
@@ -73,15 +78,16 @@ export class AuthService {
   }
 
   removarRelacao(id: string, disconnect_body: any) {
-    console.log(disconnect_body)
-    this.httpClient.put(`${this.APIingressos}/${id}`, disconnect_body).subscribe({
-      next: (res) => {
-        console.log(res)
-        this.simulateLoading(3000)
-        window.location.reload()
-      }})
-
-    
+    console.log(disconnect_body);
+    this.httpClient
+      .put(`${this.APIingressos}/${id}`, disconnect_body)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.simulateLoading(3000);
+          window.location.reload();
+        },
+      });
   }
 
   async reservarIngresso(id: string, connect_body: any) {
@@ -90,10 +96,9 @@ export class AuthService {
         this.matSnackBar.open('Ingresso reservado com sucesso!', 'Fechar', {
           duration: 2000,
           verticalPosition: 'top',
-          panelClass: 'custom-snackbar'
+          panelClass: 'custom-snackbar',
         });
-      }
+      },
     });
   }
-
 }
